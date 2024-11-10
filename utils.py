@@ -1,10 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
+import ttkbootsrtap as ttk
 import sqlite3
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import ttkbootstrap as ttk
-from ttkbootstrap.constants import *
 
 class DatabaseManager:
     def __init__(self, db_name):
@@ -121,7 +120,7 @@ class DatabaseManager:
 
 class UIF(ttk.Window):
     def __init__(self, db):
-        super().__init__(themename = "darkly")
+        super().__init__()
         self.title("Amir Laptop Store")
         self.db =   db
         self.sys_width  =   self.winfo_screenwidth()
@@ -129,6 +128,10 @@ class UIF(ttk.Window):
         self.geometry(f"{self.sys_width}x{self.sys_height}")
         self.state("zoomed")
         self.configure(bg= "lightgray")
+
+        # بهبود گرافیک با استفاده از تم
+        style = ttk.Style(self)
+        style.theme_use('clam')
 
         self.setup_layout()
 
@@ -145,7 +148,7 @@ class UIF(ttk.Window):
         self.search_frm.grid(row= 0, column= 0, sticky= "nsew", pady=10, padx=10)
         
         self.chrt_frm   =   ttk.Frame(self, padding=10)
-        self.chrt_frm.grid(row= 1, column= 0, sticky= "nsew", pady=10, padx=10, rowspan=2)
+        self.chrt_frm.grid(row= 1, column= 0, sticky= "nsew", pady=10, padx=10)
         
         # حذف فریم ویرایش از اینجا
 
